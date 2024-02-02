@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Categories\ListCategories;
 use App\Livewire\Products\ListProducts;
+use App\Livewire\SubCategories\ListSubCategories;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +19,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::prefix('home')->group(function(Router $route){
+    $route->get('/',[FrontendController::class,'index'])->name('home.index');
+    $route->get('/contact',[FrontendController::class,'contact'])->name('home.contact');
+    $route->get('/archive',[FrontendController::class,'archive'])->name('home.archive');
+    $route->get('/menu',[FrontendController::class,'menu'])->name('home.menu');
+    $route->get('/single',[FrontendController::class,'single'])->name('home.single');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/admin', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -30,5 +39,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/admin/products', ListProducts::class)->name('admin.products.index');
+Route::get('/admin/categories', ListCategories::class)->name('admin.categories.index');
+Route::get('/admin/sub_categories', ListSubCategories::class)->name('admin.sub_categories.index');
 
 require __DIR__.'/auth.php';

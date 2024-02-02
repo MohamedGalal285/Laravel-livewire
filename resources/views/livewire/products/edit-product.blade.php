@@ -30,22 +30,22 @@
                                     <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
 
+
+                                <div class="form-group">
+                                    <label for="image">Image</label>
+                                    <input wire:model.defer="image" class="form-control" type="file">
+                                    @error('image')
+                                        <span style="color: red" class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <!-- /.card-body -->
+
+
                             </div>
-
-                            <div class="form-group">
-                                <label for="image">Image</label>
-                                <input wire:model.defer="image" class="form-control" type="file">
-                                @error('image')
-                                    <span style="color: red" class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
-                            <!-- /.card-body -->
-
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div>

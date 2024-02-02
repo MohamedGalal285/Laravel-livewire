@@ -32,6 +32,7 @@
 
                                 </div>
 
+
                                 <div class="form-group">
                                     <label for="image">Image</label>
                                     <input wire:model="image" class="form-control" type="file">

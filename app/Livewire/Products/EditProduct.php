@@ -3,7 +3,6 @@
 namespace App\Livewire\Products;
 
 use App\Repositories\Products\ProductRepository;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -32,21 +31,15 @@ class EditProduct extends Component
 
     public function submit(ProductRepository $productRepository){
         $data = $this->validate();
-        $data['user_id'] = auth()->user()->id;
-        $oldImage = $this->product->image;
-        if ($data['image'] != $oldImage) {
-        $data['image'] = $productRepository->saveImage($this->image, 'products-images');
-        Storage::disk('public')->delete($oldImage ?? '');
-        }
-        $productRepository->update($data,$this->product);
+        $productRepository->adminUpdate($data,$this->product);
         return redirect(route('admin.products.index'))->with('success','Product Updated Successfully');
     }
-
     public function rules(){
+        $rule = $this->image ? 'image' : 'nullable';
         return [
             'title' => 'required',
             'description' => 'required',
-            'image' => 'required|image',
+            'image' => $rule,
         ];
     }
 }

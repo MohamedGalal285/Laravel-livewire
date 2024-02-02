@@ -22,7 +22,6 @@ class CreateProduct extends Component
 
     public function submit(ProductRepository $productRepository){
         $data = $this->validate();
-      
         $productRepository->adminCreate($data);
 
         $this->clear();

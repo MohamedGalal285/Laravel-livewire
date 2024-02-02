@@ -19,17 +19,8 @@ abstract class BaseEloquentRepository implements BaseRepositories
         // }
         return $this->model->create($data);
     }
-    public function update($request,$model){
-        $data = $request->all();
-        $user = $this->model->find($model->id);
-        $oldImage = $model->image;
-        if($request->has('image')){
-            $data['image'] = $this->saveImage($request->image,'images/admin');
-        }
-        if($oldImage && $request->has('image')){
-            Storage::disk('public')->delete($oldImage);
-        }
-        return $user->update($data);
+    public function update($data,$model){
+        return $model->update($data);
     }
     public function delete($product){
         $user = $this->model->find($product->id);

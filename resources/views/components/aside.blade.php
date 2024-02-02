@@ -38,7 +38,7 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Categories</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="">
+                <a class="nav-link " href="{{ route('admin.categories.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
@@ -50,7 +50,7 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Sub Categories</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./pages/virtual-reality.html">
+                <a class="nav-link " href="{{ route('admin.sub_categories.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-app text-info text-sm opacity-10"></i>
